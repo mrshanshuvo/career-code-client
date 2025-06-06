@@ -2,58 +2,91 @@ import { motion } from 'framer-motion';
 import team1 from '../../assets/team/team1.jpg';
 import team2 from '../../assets/team/team2.jpg';
 
-const imageStyle = "w-full max-w-xs md:max-w-sm rounded-t-4xl rounded-r-4xl border-s-8 border-b-8 border-blue-500 shadow-2xl";
+const imageStyle =
+  'w-full max-w-[200px] sm:max-w-xs md:max-w-sm rounded-t-4xl rounded-r-4xl border-s-8 border-b-8 border-blue-500 shadow-2xl';
 
 const Banner = () => {
   return (
-    <section className="hero bg-base-200 min-h-96 overflow-hidden">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="flex-1 flex flex-col gap-4 items-center">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.2, ease: 'easeOut' }}
+      className="hero bg-base-200 min-h-screen px-4 md:px-8 lg:px-16 py-8"
+    >
+      <div className="hero-content flex flex-col-reverse lg:flex-row-reverse items-center gap-8 lg:gap-16">
+        {/* Image Column */}
+        <div className="flex-1 flex flex-col gap-6 items-center justify-center">
           <motion.img
-            animate={{ y: [100, 150, 100] }}
-            transition={{ duration: 5, repeat: Infinity }}
             src={team1}
             alt="Team member 1"
             className={imageStyle}
+            animate={{ y: [0, -20, 0] }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              repeatType: 'mirror',
+              ease: 'easeInOut',
+            }}
+            whileHover={{ scale: 1.05 }}
           />
           <motion.img
-            animate={{ x: [100, 150, 100] }}
-            transition={{ duration: 10, repeat: Infinity, delay: 2 }}
             src={team2}
             alt="Team member 2"
             className={imageStyle}
+            animate={{ x: [0, 20, 0] }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              repeatType: 'mirror',
+              ease: 'easeInOut',
+              delay: 1,
+            }}
+            whileHover={{ scale: 1.05 }}
           />
         </div>
 
-        <div className="flex-1 text-center lg:text-left">
+        {/* Text Column */}
+        <div className="flex-1 text-center lg:text-left space-y-6">
           <motion.h1
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 4 }}
-            className="text-5xl font-bold"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.2, ease: 'backOut' }}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-snug"
           >
-            Remote{" "}
+            Find Your Next{' '}
             <motion.span
               animate={{
-                color: ["#ff5733", "#33ff46", "#3359ff"],
+                color: ['#ff5733', '#33ff46', '#3359ff', '#ff5733'],
               }}
-              transition={{ duration: 4, repeat: Infinity }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
             >
-              Jobs
-            </motion.span>{" "}
-            For You!
+              Remote
+            </motion.span>{' '}
+            Opportunity
           </motion.h1>
 
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.8, delay: 0.5 }}
+            className="text-sm sm:text-base md:text-lg text-gray-600"
+          >
+            Discover top remote jobs from leading companies across the globe.
+            Whether you're a developer, designer, or digital marketer — we've
+            got the perfect role for you. Work from anywhere, grow your career,
+            and enjoy the flexibility you deserve.
+          </motion.p>
 
-          <button className="btn btn-primary">Get Started</button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn btn-primary"
+          >
+            Get Started
+          </motion.button>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
