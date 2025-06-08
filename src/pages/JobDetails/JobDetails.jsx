@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 import {
   GoLocation,
 } from 'react-icons/go';
@@ -92,9 +92,11 @@ const JobDetails = () => {
 
       {/* Apply Button */}
       <div className="flex justify-center pt-4">
-        <button className="btn btn-primary btn-lg w-full sm:w-auto transition hover:scale-105 duration-300">
-          Apply Now
-        </button>
+        <Link to={`/jobApply/${job._id}`}>
+          <button className="btn btn-primary btn-lg w-full sm:w-auto transition hover:scale-105 duration-300">
+            Apply Now
+          </button>
+        </Link>
       </div>
     </div>
   );
