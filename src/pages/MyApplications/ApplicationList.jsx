@@ -10,14 +10,15 @@ const ApplicationList = ({ myApplicationsPromise }) => {
         Jobs Applied So Far: <span className="text-blue-600">{applications.length}</span>
       </h3>
       <div className="overflow-x-auto">
-        <table className="min-w-full border-collapse">
+        <table className="min-w-full border-collapse text-left">
           <thead className="bg-gray-100 text-gray-600 text-sm font-semibold">
             <tr>
-              <th className="p-4 text-left">#</th>
-              <th className="p-4 text-left">Applicant Email</th>
-              <th className="p-4 text-left">LinkedIn</th>
-              <th className="p-4 text-left">GitHub</th>
-              <th className="p-4 text-left">Resume</th>
+              <th className="p-4">#</th>
+              <th className="p-4">Job Info</th>
+              <th className="p-4">Applicant</th>
+              <th className="p-4">LinkedIn</th>
+              <th className="p-4">GitHub</th>
+              <th className="p-4">Resume</th>
             </tr>
           </thead>
           <tbody>
