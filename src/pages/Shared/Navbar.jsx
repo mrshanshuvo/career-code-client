@@ -23,7 +23,15 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      {/* Add other links here if needed */}
+      {
+        user && <div>
+          <li>
+            <NavLink to='/myApplications' onClick={() => setDropdownOpen(false)}>
+              My Applications
+            </NavLink>
+          </li>
+        </div>
+      }
     </>
   );
 
