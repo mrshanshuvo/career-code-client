@@ -1,19 +1,48 @@
 import React, { use } from 'react';
 import { AuthContext } from '../../contexts/AuthContext/AuthContext';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const AddJob = () => {
   const { user } = use(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    // console.log(data);
-    const { minSalary, maxSalary, currency, ...newJob } = data;
-    newJob.salaryRange = { minSalary, maxSalary, currency }
-    console.log(newJob);
-    // Send to backend here
+
+    // Extract and organize salary-related fields
+    const { minSalary, maxSalary, currency, requirements, responsibilities, ...rest } = data;
+    const newJob = {
+      ...rest,
+      salaryRange: { minSalary, maxSalary, currency },
+      status: "active",
+      requirements: requirements.split(',').map(item => item.trim()),
+      responsibilities: responsibilities.split(',').map(item => item.trim()),
+    };
+
+    // Send job data to the backend
+    axios.post('http://localhost:5000/jobs', newJob)
+      .then(res => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "This new Job has been saved and published",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+        // console.log('Job submitted successfully:', res.data);
+        // e.target.reset();
+      })
+      .catch(err => {
+        console.error('Error submitting job:', err);
+      });
   };
+
+
 
   return (
     <div className="max-w-4xl mx-auto p-8 bg-base-100 rounded-lg shadow-lg">

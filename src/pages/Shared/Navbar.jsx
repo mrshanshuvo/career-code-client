@@ -28,12 +28,20 @@ const Navbar = () => {
       )}
       {/* for recruiter. check role as well */}
       {user && (
-        <li>
-          <NavLink to='/addJob' onClick={() => setDropdownOpen(false)}>
-            Add Job
-          </NavLink>
-        </li>
+        <>
+          <li>
+            <NavLink to="/addJob" onClick={() => setDropdownOpen(false)}>
+              Add Job
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/myPostedJobs" onClick={() => setDropdownOpen(false)}>
+              My Posted Job
+            </NavLink>
+          </li>
+        </>
       )}
+
     </>
   );
 
